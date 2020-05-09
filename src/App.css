@@ -6,34 +6,56 @@
 	scroll-behavior: smooth;
 }
 button{
-	padding: 15px 32px;
+	padding: 12px 28px;
 	cursor: pointer;
 	font-size: 1em;
-	background-color: transparent;
+	background-color: #121923;
 	border: 1px solid white;
 	border-radius: 6px;
 	color: white;
 }
 button:hover{
-	background-color: #121923;
-	transition: 0.5s;
+	background-color: #1c2030;
+	transition: 0.3s;
 }
+button:disabled{
+	color: #C4C4C4;
+}
+button:focus {outline:0;}
 .App {
 	background-image: linear-gradient(to right bottom, #020202, #0f0f16, #171822, #1c2030, #1f283f);
 	min-height: 100vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 }
 p{
 	color: white;
 	font-size: 1em;
 }
+input{
+	margin: 0 4em 2em;
+	padding: 0.8em;
+	width: 30%;
+	font-size: 0.8em;
+	border-radius: 3px;
+	border: none;
+}
+::placeholder{
+	color: rgb(150, 149, 149);
+}
 /* Header */
 header{
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+	/* position: absolute; */
 }
 .logo{
 	grid-column: 1/2;
-	padding: 1em 2em;
+	padding: 1.5em;
 	color: white;
 	display: flex;
 	flex-direction: column;
@@ -44,13 +66,20 @@ nav{
 	display: inline-block;
 	text-align: end;
 	grid-column: 2/3;
-	padding: 2em 4em 2em 2em;
+	padding: 2.6em 4em 1em 2em;
 }
 .button-nav{
-	border: none;
 	border-radius: 0;
-	padding:0;
-	margin:0 0.8em 0;
+	padding-bottom:0.5em;
+	border: 1px solid transparent;
+	background-color: transparent;
+	padding: 0 0.8em 0.5em;
+}
+.button-nav:hover{
+	background-color: transparent;
+	border-radius: 0;
+	border-bottom: 1px solid white;
+	transition: 0.2s;
 }
 /* Start */
 .Start{
@@ -62,9 +91,6 @@ nav{
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	background-attachment: fixed;
-	z-index: -1;
-	overflow: auto;
 }
 .container-start{
 	display: grid;
@@ -88,32 +114,59 @@ nav{
 	font-size: 1em;
 	border: none;
 	padding: 0.5em;
+	border: 1px solid transparent;
+	background-color: transparent;
 }
-.tab:hover{
+.tab:first-child{
+	padding: 0 0 0.5em 0;
+}
+.selected-tab, .tab:hover{
 	background-color: transparent;
 	border-radius: 0;
 	border-bottom: 1px solid white;
 	transition: 0.2s;
 }
+.tab:hover:disabled{
+    border-bottom: transparent;
+}
 .tabs{
 	margin: 1em 3em 1em;
 	color: white;
 }
-input{
-	margin: 0 4em 0;
-	padding: 0.8em;
-	width: 30%;
-	font-size: 0.8em;
-}
 .container-list{
-	background-color: #C4C4C4;
-	margin: 2em 3em 3em;
+	background-color: rgb(206, 206, 206);
+	margin: 0em 3em 0em;
+	padding: 1em;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr 1fr 1fr;
 }
 .container-list p{
-	padding: 1em;
+	padding: 0.5em;
+	grid-column: 1/1;
 }
-.container-list p:nth-child(even){
-	background-color: #898B90;
+.container-list:nth-child(even){
+	background-color: rgb(185, 183, 183);
+}
+.btn-favorite{
+	grid-row: 1/1;
+	grid-column: 3/3;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	background-color: transparent;
+	width: 55%;
+}
+.btn-favorite:hover{
+	background-color: transparent;
+}
+.error{
+	margin: 2em 3.5em 0;
+	color: white;
+}
+.loading{
+	margin: 2em 3.5em 0;
+	color: white;
 }
 /* Add */
 .Add{
@@ -125,18 +178,40 @@ input{
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	background-attachment: fixed;
-	z-index: -1;
-	overflow: auto;
+	display: flex;
+	
+}
+#form-group{
+	margin: 0 4em 6em;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-content: center;
 }
 label{
+	margin: 0 0 0.5em;
 	color:white;
-	display: inline-block;
+	display: block;
+	text-align: start;
+	grid-column: 1/3;
 }
 .input-add{
 	display: inline-block;
+	display: inline-block;
+	width: 100%;
+	margin: 0 0 2em;
+	border: 1px solid lightgrey;
+	grid-column: 1/3;
 }
-
+.btn-add{
+	margin-top: 1em;
+	width: 100%;
+	grid-column: 1/1;
+}
+/* Favorites */
+.no-favorites{
+	margin: 2em 3.5em 0;
+	color: white;
+}
 
 
 /* Media */

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 
-const Name = (props) => {
+const Gender = (props) => {
 	const [filter, setFilter] = useState('')
-	
+
 	function handleSearch(event){
 		setFilter(event.target.value)
 	}
@@ -10,8 +10,8 @@ const Name = (props) => {
 	let status = null;
 	status = 
 		props.items
-		.filter(item =>{
-			return item.name.toLowerCase().indexOf(filter.toLowerCase()) >= 0;
+		.filter(item => {
+			return item.gender.toLowerCase().indexOf(filter.toLowerCase()) >= 0;
 		})
 		.map((item, id) =>
 			<div key={id} className="container-list">
@@ -20,7 +20,6 @@ const Name = (props) => {
 				<p>{item.gender}</p>
 			</div>
 		)
-
 	return(
 		<div className="App">
 			<div className="tabs">
@@ -28,9 +27,10 @@ const Name = (props) => {
 				<button  onClick={props.toBirthComp}  className="tab">Birth year</button> /
 				<button  onClick={props.toGenderComp} className="tab">Gender</button> 
 			</div>
-			<input type="text" placeholder="Search" onKeyUp={handleSearch}/> 
+			<input type="text" placeholder="Search" onKeyUp={handleSearch}/>
 			{status}
+
 		</div>
 	)
 }
-export default Name;
+export default Gender;
