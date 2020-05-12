@@ -1,33 +1,33 @@
 import React, {useState} from 'react';
+
 const Add = (props) => {
 	const [name, setName] = useState('')
 	const [birth_year, setBirthYear] = useState('')
 	const [gender, setGender] = useState('')
-	/* const [successMessage, setSuccessMessage] = useState(false) */
 
-	let character={
-		name:{name},
-		birth_year:{birth_year},
-		gender:{gender}
+	const handleAdd = () => {
+		console.log('handleAdd');
+		console.log('character', character);
+		props.addFavorite(character)		
 	}
-	/* let message = null;
-	if(!successMessage){
-		message = <div><p>Try again</p></div>	
+
+	let character = {
+		name: name,
+		birth_year: birth_year,
+		gender: gender,
+		own_favorite: 'Own favo'
 	}
-	else{
-		message = <div><p>Character added successfully!</p></div>
-	} */
 	
 	return(
 		<div className="Add">
 			<div id="form-group">
 				<label>Name</label>
-				<input className="input-add" type="text" placeholder="Enter the name of the character" value={name} onChange={e=>setName(e.target.value)} onClick={()=>setName('')}/>
+				<input className="input-add" type="text" placeholder="Enter the name of the character" value={name} onChange={e=>setName(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))} onClick={()=>setName('')}/>
 				<label>Birth year</label>
-				<input className="input-add" type="text" placeholder="The characters birthyear" value={birth_year} onChange={e=>setBirthYear(e.target.value)} onClick={()=>setBirthYear('')}/>
+				<input className="input-add" type="text" placeholder="The characters birthyear" value={birth_year} onChange={e=>setBirthYear(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))} onClick={()=>setBirthYear('')}/>
 				<label>Gender</label>
-				<input className="input-add" type="text" placeholder="Enter the characters gender" value={gender} onChange={e=>setGender(e.target.value)} onClick={()=>setGender('')}/>
-				<button className="btn-add" onClick={() => props.setCharacter(character)}>Add character</button>
+				<input className="input-add" type="text" placeholder="Enter the characters gender" value={gender} onChange={e=>setGender(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))} onClick={()=>setGender('')}/>
+				<button className="btn-add" onClick={handleAdd}>Add character</button>
 			</div>
 		</div>
 	)

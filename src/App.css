@@ -148,7 +148,7 @@ nav{
 .container-list:nth-child(even){
 	background-color: rgb(185, 183, 183);
 }
-.btn-favorite{
+.btn-favorite, .btn-remove{
 	grid-row: 1/1;
 	grid-column: 3/3;
 	margin: 0;
@@ -157,7 +157,7 @@ nav{
 	background-color: transparent;
 	width: 55%;
 }
-.btn-favorite:hover{
+.btn-favorite:hover, .btn-remove:hover{
 	background-color: transparent;
 }
 .error{
@@ -212,7 +212,14 @@ label{
 	margin: 2em 3.5em 0;
 	color: white;
 }
-
+.own-favorite {
+	grid-row: 1/1;
+	grid-column: 2/2;
+	color: white;
+	font-size: 1em;
+	align-self: center;
+	
+}
 
 /* Media */
 @media only screen and (max-width: 700px) {

@@ -2,7 +2,12 @@ import React, {useState, useEffect} from 'react';
 
 const List = (props) => {
 	const [isLoaded, setIsLoaded] = useState(false);
-	
+
+	const handleFavorite = item => {
+		let addToFavorites = {name: item.name, birth_year: item.birth_year, gender: item.gender}
+		props.addFavorite(addToFavorites)
+	}
+
 	useEffect(() => {
 		let list = [];
 		function getData(url){
@@ -11,9 +16,17 @@ const List = (props) => {
 			.then(async(response) =>{
 				/* console.log(list) */
 				
-				if(response.next !== null){
-					await getData(response.next)
-					response.results.forEach(item => list.push(item))	
+				/* let count = 2; */
+				let next = response.next;
+				if(next !== null){
+					await getData(next) //! kan inte hämta med next propertyn, måste vara url + count 
+					
+					/* await getData('https://swapi.dev/api/people/?page=' + count) */
+
+					/* console.log(next); */
+
+				
+					response.results.forEach(item => list.push(item))
 				}	
 				else{
 					props.setItems(list)
@@ -35,9 +48,11 @@ const List = (props) => {
 						<p>{item.name}</p>
 						<p>{item.birth_year}</p>
 						<p>{item.gender}</p>
-						<button className="btn-favorite" /* onClick={() => props.setCharacter(item.name)} */>Add to favorites</button>
+						<button className="btn-favorite" onClick={() => handleFavorite(item)}>Add to favorites</button>
 					</div>
 				)
+				
+				
 		}
 
 	return(

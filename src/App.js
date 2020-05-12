@@ -10,11 +10,17 @@ import Favorites from './components/Favorites'
 import Add from './components/Add'
 
 function App() {
-	const [newCharacter, setCharacter]=useState({})
+	const [favorites, setFavorites] = useState([])
 	const [items, setItems] = useState([])
 
 	const START = 'start', LIST = 'list', NAME = 'name', BIRTHYEAR = 'birthyear', GENDER = 'gender', FAVORITES = 'favorites', ADD = 'add';
 	const [currentComp, setCurrentComp] = useState(START);
+
+	
+	const addFavorite = item => {
+		setFavorites([...favorites, item])
+	}
+	//array = [...array, newElement];
 
 	let content = null;
     switch (currentComp) {
@@ -22,7 +28,7 @@ function App() {
             content = ( <Start nextComp={() => setCurrentComp(LIST)}/> )
             break;
         case LIST:
-            content = ( <List toNameComp={() => setCurrentComp(NAME)} toBirthComp={() => setCurrentComp(BIRTHYEAR)} toGenderComp={() => setCurrentComp(GENDER)} setCharacter={setCharacter} items={items} setItems={setItems}/> )
+            content = ( <List toNameComp={() => setCurrentComp(NAME)} toBirthComp={() => setCurrentComp(BIRTHYEAR)} toGenderComp={() => setCurrentComp(GENDER)} items={items} setItems={setItems} addFavorite={addFavorite} /> )
 			break;
 		case NAME:
 			content = ( <Name toNameComp={() => setCurrentComp(NAME)} toBirthComp={() => setCurrentComp(BIRTHYEAR)} toGenderComp={() => setCurrentComp(GENDER)} items={items}/> )
@@ -34,14 +40,15 @@ function App() {
 			content = ( <Gender toNameComp={() => setCurrentComp(NAME)} toBirthComp={() => setCurrentComp(BIRTHYEAR)} toGenderComp={() => setCurrentComp(GENDER)} items={items}/> )
 			break;
 		case FAVORITES:
-			content = ( <Favorites newCharacter={newCharacter}/> )
+			content = ( <Favorites favorites={favorites} setFavorites={setFavorites}/> )
 			break;
 		case ADD:
-			content = ( <Add setCharacter={setCharacter}/> )
+			content = ( <Add addFavorite={addFavorite}/> )
 			break;
 		default:
 			content = ( <List/> )
-    }
+	}
+	
 
 
 	return (
