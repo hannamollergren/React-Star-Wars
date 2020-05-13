@@ -1,26 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Header from './components/Header'
 import Start from './components/Start'
 import List from './components/List'
-import Name from './components/Name'
-import BirthYear from './components/BirthYear';
-import Gender from './components/Gender';
 import Favorites from './components/Favorites'
 import Add from './components/Add'
 
 function App() {
 	const [favorites, setFavorites] = useState([])
 	const [items, setItems] = useState([])
+	const [isLoaded, setIsLoaded] = useState(false);
 
-	const START = 'start', LIST = 'list', NAME = 'name', BIRTHYEAR = 'birthyear', GENDER = 'gender', FAVORITES = 'favorites', ADD = 'add';
-	const [currentComp, setCurrentComp] = useState(START);
-
-	
 	const addFavorite = item => {
 		setFavorites([...favorites, item])
 	}
-	//array = [...array, newElement];
+
+	const START = 'start', LIST = 'list', FAVORITES = 'favorites', ADD = 'add';
+	const [currentComp, setCurrentComp] = useState(START);
 
 	let content = null;
     switch (currentComp) {
@@ -28,16 +24,7 @@ function App() {
             content = ( <Start nextComp={() => setCurrentComp(LIST)}/> )
             break;
         case LIST:
-            content = ( <List toNameComp={() => setCurrentComp(NAME)} toBirthComp={() => setCurrentComp(BIRTHYEAR)} toGenderComp={() => setCurrentComp(GENDER)} items={items} setItems={setItems} addFavorite={addFavorite} /> )
-			break;
-		case NAME:
-			content = ( <Name toNameComp={() => setCurrentComp(NAME)} toBirthComp={() => setCurrentComp(BIRTHYEAR)} toGenderComp={() => setCurrentComp(GENDER)} items={items}/> )
-			break;
-		case BIRTHYEAR:
-			content = ( <BirthYear toNameComp={() => setCurrentComp(NAME)} toBirthComp={() => setCurrentComp(BIRTHYEAR)} toGenderComp={() => setCurrentComp(GENDER)} items={items}/> )
-			break;
-		case GENDER:
-			content = ( <Gender toNameComp={() => setCurrentComp(NAME)} toBirthComp={() => setCurrentComp(BIRTHYEAR)} toGenderComp={() => setCurrentComp(GENDER)} items={items}/> )
+            content = ( <List items={items} setItems={setItems} isLoaded={isLoaded} addFavorite={addFavorite} /> )
 			break;
 		case FAVORITES:
 			content = ( <Favorites favorites={favorites} setFavorites={setFavorites}/> )
@@ -46,8 +33,37 @@ function App() {
 			content = ( <Add addFavorite={addFavorite}/> )
 			break;
 		default:
-			content = ( <List/> )
+			content = ( <Start/> )
 	}
+
+	useEffect(() => {
+		let list = [];
+		function getData(url){
+			fetch(url)
+			.then((res) => res.json())
+			.then(async(response) =>{
+				console.log(list)
+				
+				/* let count = 2; */
+				let next = response.next;
+				if(next !== null){
+					await getData(next) //! kan inte hämta med next propertyn, måste vara url + count 
+					
+					/* await getData('https://swapi.dev/api/people/?page=' + count) */
+
+					/* console.log(next); */
+
+				
+					response.results.forEach(item => list.push(item))
+				}	
+				else{
+					setItems(list)
+					setIsLoaded(true)
+				}	
+			})	
+		}
+		getData('https://swapi.dev/api/people/')
+	}, []) // UseEffects slut
 	
 
 

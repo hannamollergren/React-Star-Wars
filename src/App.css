@@ -5,17 +5,20 @@
 	box-sizing: border-box;
 	scroll-behavior: smooth;
 }
+body{
+	font-family: Arial, Helvetica, sans-serif;
+}
 button{
 	padding: 12px 28px;
 	cursor: pointer;
 	font-size: 1em;
-	background-color: #121923;
+	background-color: #1c2030;
 	border: 1px solid white;
 	border-radius: 6px;
 	color: white;
 }
 button:hover{
-	background-color: #1c2030;
+	background-color: #121923;
 	transition: 0.3s;
 }
 button:disabled{
@@ -43,6 +46,7 @@ input{
 	font-size: 0.8em;
 	border-radius: 3px;
 	border: none;
+	border: 3px solid black;
 }
 ::placeholder{
 	color: rgb(150, 149, 149);
@@ -51,7 +55,7 @@ input{
 header{
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	/* position: absolute; */
+	position: relative;
 }
 .logo{
 	grid-column: 1/2;
@@ -120,7 +124,7 @@ nav{
 .tab:first-child{
 	padding: 0 0 0.5em 0;
 }
-.selected-tab, .tab:hover{
+.active, .tab:hover{
 	background-color: transparent;
 	border-radius: 0;
 	border-bottom: 1px solid white;
@@ -149,13 +153,13 @@ nav{
 	background-color: rgb(185, 183, 183);
 }
 .btn-favorite, .btn-remove{
-	grid-row: 1/1;
+	grid-row: 2/2;
 	grid-column: 3/3;
 	margin: 0;
 	padding: 0;
-	text-align: center;
 	background-color: transparent;
 	width: 55%;
+	justify-self: end;
 }
 .btn-favorite:hover, .btn-remove:hover{
 	background-color: transparent;
@@ -170,7 +174,7 @@ nav{
 }
 /* Add */
 .Add{
-	background-image: url("./images/image.png");
+	background-image: linear-gradient(to right bottom, #020202, #0f0f16, #171822, #1c2030, #1f283f);
 	height: 100vh;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -229,13 +233,17 @@ label{
 		grid-template-rows: 2fr 2fr 1fr;
 	}
    .item{
-		margin: 0 0em 0;
+		margin: auto;
 		grid-column: 1/2;
 		grid-row: 2/2;
-	   	width: 100%;
+		width: 90%;
+		display: flex;
    }
    .flex-start{
 	   grid-row: 3/3;
+	   justify-content: center;
+	   align-self: start;
+	   margin: 2em 0 0;
    }
 }
 
