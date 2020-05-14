@@ -6,8 +6,6 @@ const Add = (props) => {
 	const [gender, setGender] = useState('')
 
 	const handleAdd = () => {
-		console.log('handleAdd');
-		console.log('character', character);
 		props.addFavorite(character)		
 	}
 

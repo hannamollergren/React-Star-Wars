@@ -4,16 +4,13 @@ const List = (props) => {
 	const [filter, setFilter] = useState('')
 
 	function handleSearch(event){
-	
 		setFilter(event.target.value)
 	}
 
 	const handleFavorite = item => {
-		console.log('handleFavorite');
-		
 		let addToFavorites = {name: item.name, birth_year: item.birth_year, gender: item.gender}
+
 		props.addFavorite(addToFavorites)
-		console.log('addTofavorites', addToFavorites);
 	}
 
 	let status = null;

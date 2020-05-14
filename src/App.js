@@ -42,18 +42,10 @@ function App() {
 			fetch(url)
 			.then((res) => res.json())
 			.then(async(response) =>{
-				console.log(list)
-				
-				/* let count = 2; */
+	
 				let next = response.next;
 				if(next !== null){
-					await getData(next) //! kan inte hämta med next propertyn, måste vara url + count 
-					
-					/* await getData('https://swapi.dev/api/people/?page=' + count) */
-
-					/* console.log(next); */
-
-				
+					await getData(next)
 					response.results.forEach(item => list.push(item))
 				}	
 				else{
