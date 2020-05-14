@@ -8,14 +8,6 @@ const Favorites = (props) => {
 	// favorites
 	console.log('faveorite från list', props.favorites);
 	
-
-/* 	const removeFavorite = (id) => {
-		console.log('handleRemove', id);
-		
-		props.setFavorites(props.favorites.filter(item => item !== id))
-		console.log('favoriteList');
-		
-	}  */
 	
 	favoritesList = favoritesList.concat(props.favorites)
 	console.log('favoritesList2', favoritesList);
@@ -35,7 +27,6 @@ const Favorites = (props) => {
 					<p>{item.birth_year}</p>
 					<p>{item.gender}</p>
 					<h3 className="own-favorite">{item.own_favorite}</h3>
-					{/* <button className="btn-remove" onClick={()=> removeFavorite(id)} >Remove</button> */}
 				</div>
 		)
 	}

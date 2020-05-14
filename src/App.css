@@ -102,7 +102,8 @@ nav{
 	grid-template-rows: 1fr 2fr 1fr;
 }
 .item{
-	margin: 0 2em 0;
+	height: 300px;
+	margin: 0 2em 0 3em;
 	grid-column: 1/1;
 	grid-row: 2/2;
 }
@@ -111,7 +112,7 @@ nav{
 	display: flex;
 	justify-content: center;
 	align-self: center;
-	margin: 0 2em 0;
+	margin: 0 3em 0 2em;
 }
 /* List */
 .tab{
@@ -163,6 +164,7 @@ nav{
 }
 .btn-favorite:hover, .btn-remove:hover{
 	background-color: transparent;
+	border: 2px solid white;
 }
 .error{
 	margin: 2em 3.5em 0;

@@ -9,8 +9,11 @@ const List = (props) => {
 	}
 
 	const handleFavorite = item => {
+		console.log('handleFavorite');
+		
 		let addToFavorites = {name: item.name, birth_year: item.birth_year, gender: item.gender}
 		props.addFavorite(addToFavorites)
+		console.log('addTofavorites', addToFavorites);
 	}
 
 	let status = null;
@@ -28,7 +31,7 @@ const List = (props) => {
 					<p>{item.name}</p>
 					<p>{item.birth_year}</p>
 					<p>{item.gender}</p>
-					<button className="btn-favorite"onClick={handleFavorite}>Add to favorites</button>
+					<button className="btn-favorite" onClick={() => handleFavorite(item)}>Add to favorites</button>
 				</div>
 			)
 	}
@@ -36,7 +39,7 @@ const List = (props) => {
 	return(
 		<div className="App">
 			<input type="text" placeholder="Search" onKeyUp={handleSearch}/> 
-			{status}
+			<div>{status}</div>
 		</div>
 	)
 }
